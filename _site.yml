@@ -1,0 +1,13 @@
+name: "Ha Nguyen's Project"
+output_dir: "."
+navbar:
+  title: "Ha Nguyen's Project"
+  left:
+    - text: "Introduction"
+      href: index.html
+    - text: "Data and Methods"
+      href: data.html
+    - text: "Results"
+      href: results.html
+    - text: "Conclusion"
+      href: conclusion.html

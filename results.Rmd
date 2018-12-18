@@ -1,0 +1,58 @@
+---
+title: "Results"
+---
+
+#Dependent variable 1: Occurrence of cheating
+
+We started by looking at the main treatment effects. For the main effect of depletion, out of 70 depleted participants, only nine cheated; out of 62 non-depleted particpants, eight cheated. Proportion test shows no statistically significant difference in occurrence of cheating between depleted and non-depleted participants (p = 1), suggesting that depletion has no effect on the occurrence of cheating. 
+```{r, echo=FALSE}
+prop.test(x=c(9,8), n=c(70,62))
+```
+
+For the main effect of framing, out of 73 participants in the gain framing, only eight cheated; out of 59 in the loss framing, nine cheated. Again, proportion test shows no statistically significant difference in occurrence of cheating between framing conditions (p = 0.638), suggesting that framing has no effect on the occurrence of cheating. 
+
+```{r, echo=FALSE}
+prop.test(x=c(9,8), n=c(59,73))
+```
+
+Next, I looked at the interaction effect between depletion and framing and identified that there was no statistically significant difference in the occurrence of cheating across the four treatment groups (Kruskal-Wallis test; p = 0.893). The table below shows the percentage of cheating in four treatment conditions. 
+
+```{r, echo=FALSE}
+dv1 <- matrix(c(10.3,16.1,14.7,14.2),ncol=2,byrow=TRUE)
+colnames(dv1) <- c("Gain framing","Loss framing")
+rownames(dv1) <- c("Depletion","No depletion")
+dv1 <- as.table(dv1)
+dv1
+```
+
+#Dependent variable 2: Magnitude of cheating
+Similarly to DV1, I started by looking at the main treatment effects. I did not find a significant difference in the amount of cheating between depleted and non-depleted participants (two-sided Mann-Whitney-U-test; p = 0.962). The table below shows the average amount of cheating in depleted and non-depleted groups. 
+
+```{r, echo=FALSE}
+dv2 <- matrix(c(9,8,1.83,4.25,1.6,3.33),ncol=2,byrow=TRUE)
+colnames(dv2) <- c("Depletion","No depletion")
+rownames(dv2) <- c("N","Mean (Amount of cheating)","SD")
+dv2 <- as.table(dv2)
+dv2
+```
+
+Interestingly, we found a significant difference in the amount of cheating between gain and loss framing (two-sided Mann-Whitney-U-test; p = 0.034). The table below shows the average amount of cheating in gain and loss framing groups. On average, participants in the loss frame dishonestly reported approximately three more tickets than those in the gain frame; closely aligning with our second hypothesis. 
+
+```{r, echo=FALSE}
+dv3 <- matrix(c(8,9,1.63,4,1.41,3.20),ncol=2,byrow=TRUE)
+colnames(dv3) <- c("Gain framing","Loss framing")
+rownames(dv3) <- c("N","Mean (Amount of cheating)","SD")
+dv3 <- as.table(dv3)
+dv3
+```
+
+Finally, I looked at the interaction effect of depletion and framing on the magnitude of cheating and found a statistically significant difference in the occurrence of cheating across the four treatment groups (Kruskal-Wallis test; p = 0.034). As shown in the table below, the magnitude of cheating was the largest for non-depleted participants in loss framing, though not consistent with our third hypothesis.  
+
+```{r, echo=FALSE}
+dv4 <- matrix(c(1.25,2,2,6.5,0.5,1.73,2,2.89),ncol=4,byrow=TRUE)
+colnames(dv4) <- c("Depleted_Gain","Depleted_Loss","Non-depleted_Gain","Non-depleted_Loss")
+rownames(dv4) <- c("Average amount","SD")
+dv4 <- as.table(dv4)
+dv4
+```
+

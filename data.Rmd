@@ -1,0 +1,29 @@
+---
+title: "Data and Methods"
+---
+
+#Data
+Ultimately, we ended up recruiting 132 students from all colleges and a variety of graduate schools at the University of Pennsylvania (64% female; Mage = 20.29, SD = 3.85 ; 50% freshman, 25% graduate students). Although our data collection process took place at different locations across campus, the demographic characteristics of our sample are consistent across these locations. Descriptive statistics of our sample can be found below. 
+
+```{r, echo=F}
+smoke <- matrix(c(67,64,66,50,50,18.27,20.79,20.93,27.1,18.67),ncol=5,byrow=TRUE)
+colnames(smoke) <- c("Freshman Quadrangle","Van Pelt Library","Houston Hall","Cohen Hall","Arch Cafe")
+rownames(smoke) <- c("Percentage of female","Average age")
+smoke <- as.table(smoke)
+smoke
+```
+
+#Methods
+
+##Independent variables
+Our two independent variables of interest were depletion (whether participants are depleted or not) and framing (whether participants are in a loss or gain frame). Additionally, we were also interested in identifying whether there was an interaction effect between these two variables.
+
+##Dependent variables
+Cheating was measured in two ways: occurrence of cheating and magnitude of cheating. We first looked at whether participants cheated or not. Participants were considered to have cheated if the self-reported number of correctly solved matrices was higher than the actual number of correctly solved matrices (calculated by researchers after the experiment). These observations were coded “1” for the binary variable cheating. Conversely, participants were coded “0” if there was no difference or a negative difference between the self-reported number of correctly solved matrices and the actual number of correctly solved matrices. To test for hypotheses 1 and 2 (main effects of depletion and framing), I used proportion tests to examine whether the proportion of cheated participants was different across treatment groups. To test for hypothesis 3, I used Kruskal-Wallis test to see if there is any significant difference between four treatment conditions.  
+
+For those who cheated, we thought it would be interesting to examine whether depletion and framing had effects on the magnitude of their cheating. Therefore, we measured the magnitude of cheating as the difference between the self-reported number of correctly solved matrices and the actual number of correctly solved matrices. Unfortunately, only 17 participants (out of 132 participants) displayed cheating behavior; thus limiting the power of our analysis for this dependent variable. To test for hypotheses 1 and 2 (main effects of depletion and framing), I used Mann-Whitney U test to examine whether the magnitude of cheating was different across treatment groups. To test for hypothesis 3, I used Kruskal-Wallis test to see if there is any significant difference between four treatment conditions.
+
+In general, I used nonparametric tests because they do not require any specific form for the distribution of the population from which the sample comes from. This is a safe choice with our smaller sample size and unknown population parameters. Moreover, our data might be skewed with overrepresented observations with the value “0”; non-parametric tests take care of this concern. 
+
+
+
