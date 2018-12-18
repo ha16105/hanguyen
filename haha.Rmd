@@ -1,0 +1,105 @@
+---
+title: "The Effects of Self-Control Depletion on Cheating Behavior Under Loss and Gain Framing"
+author: "Ha Nguyen"
+date: "December 7, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+packages <- c("readxl", "knitr", "tidyr", "dplyr", "ggplot2", "plotly")
+library(readxl)
+knitr::opts_chunk$set(echo = FALSE)
+setwd("C:/Users/nguyha/Desktop")
+npt <- read_excel("non-parametric.xlsx")
+data <- read_excel("501.xlsx")
+```
+
+## Introduction
+
+In recent years, there has been an explosion of research regarding people's decision making behaviors and the contextual factors that contribute to such decisions. This has led to the identification of systematic cognitive biases in decision making such as "the framing effect," by which an individual's decision making tends to be based on the way in which a decision or its potential outcomes are presented (Tversky & Kahneman, 1981). Additionally, individual factors such as self-control depletion have been suggested to play a role in decision making behaviors (Baumeister et al., 2007). Biases and individual factors have been shown to influence behaviors in many areas of decision making. 
+
+One area of interest for scholars has been that of behavioral ethics. Many researchers have sought to understand what leads individuals to engage in immoral behaviors such as cheating and lying. Studies have been able to identify contextual factors and circumstances that lead individuals to higher rates of cheating and lying. In line with other areas of decision making, systematic biases and contextual factors have been shown to lead to more or less cheating in different situations. Research conducted by Grolleau et al., (2016) suggests that people are more likely to cheat when faced with a loss than when faced with a gain. Alternatively, results from a study conducted by Mead et al., (2009) found that self-control depletion led to an increase in cheating behaviors.
+
+Interestingly, little research has been conducted to evaluate the compound effect of biases with individual factors on decision making.  For example, little is known about how individuals make choices when they are depleted of self-control and faced with differently framed choices.Rather, the literature typically focuses on one factor at a time in isolation. This makes sense from an experimental practicality standpoint, but does not capture the full picture of how decisions are made in the real world. People often face multiple competing influences at once when making a decision. Understanding how competing heuristics, influences, and biases are resolved provides some insight on decision maker's cognitive processes. It is possible that these influences may be compounding, leading to more reliance on heuristics or biases to make decisions. Alternatively, the presence of multiple factors may lead to one factor being more dominant than the others. For example, does being tired override loss aversion and make decision makers more conservative when faced with a loss? Studies are needed to understand how situations like this will be resolved in the mind of the decision maker and what implications this has for decisions ranging from consumer behavior to policy. 
+
+The purpose of the current study was to evaluate cheating behaviors in a context where participants are both depleted of their self-control and compensation framed as a gain or loss. Participants took an online study conducted in the field in different locations across the University of Pennsylvania campus. They were randomly assigned to one of four conditions: depleted_loss, depleted_gain, non-depleted_loss, and non-depleted_gain. Those in the depletion conditions completed a self-control task while those in the non-depleted conditions completed a control task. After this task, everyone completed a matrices task where they were presented with 10 matrices and had 20 seconds to find the two numbers that added to exactly 10. Those in the loss frame were given 10 tickets in an envelope and told they had to return one ticket for each matrix they solved incorrectly. Those in the gain frame were told they earned one ticket for each correct matrix they solved. After the matrices task, participants received feedback on how they did and were told to self-administer their rewards, presenting them with the opportunity to misreport how well they did by taking (or keeping) more tickets than they earned. Overall, participants in this study cheated less than participants in previous cheating studies using the same task (Mead et al., 2009; Grolleau et al., 2016) and there was no significant difference between the groups in the amount of cheating. 
+
+
+
+
+## Analytical Strategy
+
+### Data
+
+The degree of cheating across treatments was measured in two ways. The first dependent variable (DV1) is a binary variable, with 0 indicating there is no cheating and 1 representing cheating behavior. Data is coded "0" if there is no difference between the reported number of correctly solved matrices and the actual number of correctly solved matrices, meaning participants correctly reported their performance. On the other hand, data is coded "1" if the stated performance is different from zero. Additionally, for participants that cheated, I wanted to see the magnitude of cheating; hence, I have a second dependent variable (DV2), which captures the difference between the reported number of correctly solved matrices and the actual number of correctly solved matrices. Two independent variables of interest are depletion (coded "1" if participants were depleted and "0" if not) and framing (coded "1" if participants were in the gain framing and "0" if in the loss framing).
+
+In total, we had 132 clean observations. Below is the descriptive statistics of the sample.
+
+
+```{r}
+summary(data$Age)
+summary(data$Male)
+```
+
+### Methods
+
+My first hypothesis is that regardless of loss/gain framing, participants depleted of self-control will cheat more, on average, than non-depleted participants.
+
+My second hypothesis is that loss framing will lead to more cheating relative to gain framing, regardless of self-control depletion or lack thereof.
+
+Finally, my third hypothesis is that the average rate/amount of cheating demonstrated will be greatest for participants who are depleted of self-control and operating under a loss frame. 
+
+To examine the effects of depletion and framing on DV1, I ran two proportion tests, one for each independent variable. To study the interaction effect, I ran a Kruskal Willis test. To study the effects of depletion and framing on DV2, I ran two Wilcoxon rank sum tests and a Kruskal Willis test for the interaction effect. 
+
+## Results
+
+First, I test the effect of depletion on the occurence of cheating. First, I created a table to see where cheating occured within the two conditions of depletion. 
+
+```{r}
+table(npt$Cheat, npt$deplete)
+```
+These numbers tell us that among the 62 participants in the no_depletion condition, eight people cheated. On the other hand, among the 70 participants in the depletion condition, nine cheated. Next, using these numbers, I am going to run a proportion test to see if there is any significant difference in occurence of cheating between the two conditions (depletion and no_depletion). Results are presented below.
+
+```{r}
+prop.test(x=c(9,8), n=c(70,62))
+```
+A p-value of 1 suggests that there is no difference at all between the two depletion groups.
+
+
+Next, I look at the effect of framing on occurence of cheating. Again, I will look at the table. 
+
+```{r}
+table(npt$Cheat, npt$gain)
+```
+These numbers tell us that among the 59 participants in the loss framing, nine people cheated. On the other hand, among the 73 participants in the gain framing, eight cheated. Next, using these numbers, I am going to run a proportion test to see if there is any significant difference in occurence of cheating between the two framing conditions (gain and loss). Results are presented below.
+```{r}
+prop.test(x=c(9,8), n=c(59,73))
+```
+A p-value of 0.638 suggests that there is no difference at all between the two framing groups.
+
+
+So far, we have seen no significant main effect of either depletion or framing on cheating behavior. Next, I look at the interaction effect to see if there is anything. Since I have four experimental conditions, I use the Kruskal-Wallis non-parametric test to examine the interaction effect.  
+
+
+Again, the interaction effect is not significant with a p-value of 0.893. So the occurence of cheating is not significantly different across the four experimental groups. 
+
+Even though our sample only has 17 out of 132 participants that cheated, it would still be interesting to see if any of our manipulation had an effect on the magnitude of their cheating. 
+
+To do so, I run two Wilcoxon rank sum tests
+```{r}
+wilcox.test(npt$Cheat, npt$gain)
+wilcox.test(npt$Cheat, npt$deplete)
+```
+Again, I don't find any significant main effects of either depletion or framing on magnitude of cheating.
+
+Next, I look at the interaction effect.
+```{r}
+kruskal.test(npt$Amount, npt$Condition)
+```
+Interestingly, the interaction effect is significant, with non-depleted participants in loss framing cheated the most. However, it is important to note this is a very small sample with only 17 observations; hence, the power is really small. 
+
+## Conclusion
+Surprisingly, depleted participants did not cheat more often or to a greater degree than non-depleted participants. Additionally, loss framing also did not lead participants to cheat more frequently than gain framing. Overall, we find little evidence supporting the notion of any interaction effects between self-control depletion  and loss framing.
+
+
+
